@@ -14,7 +14,13 @@ class FirebaseManager {
             toFirestore: (SaveModel saveModel, _) => saveModel.toFireStore());
   }
 
+ // get movies
+  Stream<QuerySnapshot<SaveModel>> getSavedMovies() {
+    var collectionRef = getMoviesCollection();
+    return collectionRef.snapshots();
+  }
 
+  
 //  add movie
   Future<void> addFavMovie(SaveModel saveModel)  {
     var collectionRef = getMoviesCollection();
@@ -28,21 +34,17 @@ class FirebaseManager {
     return collectionRef.doc(saveModel.id.toString()).delete();
   }
 
-  // get movies
-  Stream<QuerySnapshot<SaveModel>> getSavedMovies() {
-    var collectionRef = getMoviesCollection();
-    return collectionRef.snapshots();
-  }
+ 
 
-  // delete all movies
-  Future<void> deleteAllMovies()  {
-    var collectionRef = getMoviesCollection();
-    return collectionRef.get().then((value) {
-      for (DocumentSnapshot doc in value.docs) {
-        doc.reference.delete();
-      }
-    });
-  }
+  // // delete all movies
+  // Future<void> deleteAllMovies()  {
+  //   var collectionRef = getMoviesCollection();
+  //   return collectionRef.get().then((value) {
+  //     for (DocumentSnapshot doc in value.docs) {
+  //       doc.reference.delete();
+  //     }
+  //   });
+  // }
 
 
 }

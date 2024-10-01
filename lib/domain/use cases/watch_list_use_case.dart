@@ -8,7 +8,15 @@ class WatchListUseCase {
   @factoryMethod
   WatchListUseCase({required this.watchListRepositoryContract});
 
-  Future<List<MovieModel>?> invoke() {
+  Stream<List<MovieModel>?> getWatchListMovies() {
     return watchListRepositoryContract.getWatchListMovies();
+  }
+
+  Future<void> addFavMovie(MovieModel movieModel) {
+    return watchListRepositoryContract.addFavMovie(movieModel);
+  }
+
+  Future<void> deleteFavMovie(MovieModel movieModel) {
+    return watchListRepositoryContract.deleteFavMovie(movieModel);
   }
 }

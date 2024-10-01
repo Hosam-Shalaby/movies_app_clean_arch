@@ -9,7 +9,7 @@ class MovieDetailsDatasourceImpl extends MovieDetailsDatasourceContract {
   MovieDetailsDatasourceImpl({required this.apiManager});
 
   @override
-  Future<List<MovieModel>?> getMovieDetails(int? movieId) async {
+  Future<List<MovieModel>?> getMovieDetails(int movieId) async {
     var response = await apiManager.getMovieDetails(movieId);
     return response.results?.map((e) => e.toMovieModel()).toList();
   }

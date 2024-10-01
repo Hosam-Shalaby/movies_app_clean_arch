@@ -8,17 +8,15 @@ class BrowseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage('assets/images/bc.png'))),
-        height: 150.h,
-        width: 90.w,
-        child: Center(
-          child: Text(genreModel.name,
-              style:  TextStyle(color: Colors.white, fontSize: 25.sp)),
-        ),
+    return Container(
+      margin: const EdgeInsets.all(10),
+      decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/Rectangle 1.png'),
+              fit: BoxFit.cover)),
+      child: Center(
+        child: Text(genreModel.name,
+            style: TextStyle(color: Colors.white, fontSize: 25.sp)),
       ),
     );
   }

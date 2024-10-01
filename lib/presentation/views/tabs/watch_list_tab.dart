@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_application/config/di/di.dart';
+import 'package:movies_application/config/theme/theme_data.dart';
+import 'package:movies_application/domain/entities/movie_model.dart';
 import 'package:movies_application/presentation/view%20model/cubit/watch_list_cubit.dart';
 import 'package:movies_application/presentation/view%20model/states/watch_list_state.dart';
+import 'package:movies_application/presentation/widgets/watch_list_widget.dart';
 
 class WatchListTab extends StatefulWidget {
   const WatchListTab({super.key});
@@ -17,7 +21,7 @@ class _WatchListTabState extends State<WatchListTab> {
   @override
   void initState() {
     super.initState();
-    viewModel.initPage();
+    viewModel.getWatchListMovies();
   }
 
   @override
@@ -37,6 +41,8 @@ class _WatchListTabState extends State<WatchListTab> {
                   Text(state.errorMessage ?? ''),
                   ElevatedButton(
                       onPressed: () {
+                        viewModel.getWatchListMovies();
+
                         print(state.errorMessage);
                       },
                       child: const Text('Try Again'))
@@ -49,20 +55,37 @@ class _WatchListTabState extends State<WatchListTab> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(
-                    height: 50,
+                  SizedBox(
+                    height: 50.h,
                   ),
-                  const Text(
-                    'Watch List',
-                    style: TextStyle(color: Colors.white),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      'Watch List',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const Divider(
+                    color: Colors.white,
+                    thickness: .5,
                   ),
                   Expanded(
-                    child: ListView.builder(
-                      itemCount: watchList?.length,
+                    child: ListView.separated(
+                      itemCount: watchList!.length,
                       itemBuilder: (context, index) {
-                        return Text(watchList![index].title ?? '',
-                            style: const TextStyle(color: Colors.white));
+                        return WatchListWidget(
+                          movieModel: watchList[index],
+                          watchListCubit: viewModel,
+                        );
                       },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const Divider(
+                        color: Colors.white,
+                        thickness: .5,
+                      ),
                     ),
                   ),
                 ],

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_application/config/di/di.dart';
+import 'package:movies_application/domain/entities/movie_model.dart';
 import 'package:movies_application/presentation/view%20model/cubit/home_cubit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:movies_application/presentation/view%20model/cubit/watch_list_cubit.dart';
 import 'package:movies_application/presentation/view%20model/states/home_state.dart';
 import 'package:movies_application/presentation/views/movie_details_screen.dart';
 import 'package:movies_application/presentation/widgets/new_releases_widget.dart';
@@ -19,6 +21,7 @@ class HomeTab extends StatefulWidget {
 
 class _HomeTabState extends State<HomeTab> {
   HomeCubit viewModel = getIt<HomeCubit>();
+  WatchListCubit viewWatchListModel = getIt<WatchListCubit>();
   @override
   void initState() {
     super.initState();
@@ -50,6 +53,7 @@ class _HomeTabState extends State<HomeTab> {
               var populars = state.popularList;
               var newReleases = state.newReleasesList;
               var topRated = state.topRatedList;
+              print('populars length : ${newReleases?.length}');
               return SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,8 +92,8 @@ class _HomeTabState extends State<HomeTab> {
                       options: CarouselOptions(
                           autoPlay: true, animateToClosest: true),
                     ),
-                    const SizedBox(
-                      height: 10,
+                     SizedBox(
+                      height: 10.h,
                     ),
                     Text(
                       'New Releases',
@@ -106,11 +110,12 @@ class _HomeTabState extends State<HomeTab> {
                           itemBuilder: (context, index) {
                             return NewReleasesWidget(
                               movieModel: newReleases![index],
+                              watchListCubit: viewWatchListModel,
                             );
                           },
                         )),
-                    const SizedBox(
-                      height: 10,
+                     SizedBox(
+                      height: 10.h,
                     ),
                     Text(
                       'Top Rated',
@@ -126,7 +131,7 @@ class _HomeTabState extends State<HomeTab> {
                           itemCount: topRated?.length,
                           itemBuilder: (context, index) {
                             return TopRatedWidget(
-                              movieModel: topRated![index],
+                              movieModel: topRated![index],watchListCubit: viewWatchListModel,
                             );
                           },
                         )),

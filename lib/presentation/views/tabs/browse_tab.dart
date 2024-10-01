@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_application/config/di/di.dart';
 import 'package:movies_application/presentation/view%20model/cubit/categories_cubit.dart';
 import 'package:movies_application/presentation/view%20model/states/categories_state.dart';
 import 'package:movies_application/presentation/widgets/browse_widget.dart';
+import 'package:movies_application/utls/constant/color_constant.dart';
 
 class BrowseTab extends StatefulWidget {
   const BrowseTab({super.key});
@@ -47,21 +49,26 @@ class _BrowseTabState extends State<BrowseTab> {
           case CategoriesSuccess():
             {
               var categories = state.categories;
-              return Column(
-                children: [
-                  const Text('Browse Category'),
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
-                      itemBuilder: (context, index) => BrowseWidget(
-                        genreModel: categories![index],
+              return Scaffold(
+                backgroundColor: ColorConstant.backGroundColor,
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                     SizedBox(height: 30.h),
+                     Text('Browse Category',
+                        style: TextStyle(fontSize: 20.sp, color: Colors.white)),
+                    Expanded(
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        itemBuilder: (context, index) =>
+                            BrowseWidget(genreModel: categories![index]),
+                        itemCount: categories?.length,
                       ),
-                      itemCount: categories?.length,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               );
             }
         }

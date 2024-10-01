@@ -7,7 +7,7 @@ class GetMovieDetailsUseCase {
   MovieDetailsRepositoryContract movieDetailsRepositoryContract;
   @factoryMethod
   GetMovieDetailsUseCase({required this.movieDetailsRepositoryContract});
-  Future<List<MovieModel>?> invoke(int? movieId) {
+  Future<List<MovieModel>?> invoke(int movieId) {
     return movieDetailsRepositoryContract.getMovieDetails(movieId);
   }
 }

@@ -40,13 +40,31 @@ class ApiManager {
   }
 
   //  moviesDetails
-  Future<PopularResponse> getMovieDetails(movieId) async {
-    var url = Uri.https(ApiConstant.baseUrl, '3/movie/$movieId',
+  // Future<PopularResponse> getMovieDetails(int movieId) async {
+  //   var url = Uri.https('api.themoviedb.org', '/3/movie/$movieId/similar', {
+  //     "api_key": ApiConstant.apiKey,
+  //   });
+  //   var response = await http.get(url);
+  //   var json = jsonDecode(response.body);
+  //   PopularResponse moviesDetails = PopularResponse.fromJson(json);
+  //   return moviesDetails;
+  // }
+  Future<PopularResponse> getMovieDetails(int movieId) async {
+    var url = Uri.https(ApiConstant.baseUrl, '/3/movie/$movieId',
         {"api_key": ApiConstant.apiKey});
     var response = await http.get(url);
-    var json = jsonDecode(response.body);
-    PopularResponse moviesDetails = PopularResponse.fromJson(json);
-    return moviesDetails;
+
+    // تحقق من حالة الاستجابة
+    print("Status Code: ${response.statusCode}");
+
+    if (response.statusCode == 200) {
+      var json = jsonDecode(response.body);
+      print("Data received: $json"); // طباعة البيانات المستلمة
+      return PopularResponse.fromJson(json);
+    } else {
+      print("Error: Failed to load movie details");
+      throw Exception('Failed to load movie details');
+    }
   }
 
   // search

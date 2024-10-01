@@ -9,7 +9,7 @@ class MovieDetailsCubit extends Cubit<MovieDetailsState> {
   @factoryMethod
   MovieDetailsCubit({required this.getMovieDetailsUseCase})
       : super(MovieDetailsLoading(message: 'Loading....'));
-  void initPage( int? movieId) async {
+  void initPage(int movieId) async {
     emit(MovieDetailsLoading(message: 'Loading....'));
     try {
       var movieDetails = await getMovieDetailsUseCase.invoke(movieId);

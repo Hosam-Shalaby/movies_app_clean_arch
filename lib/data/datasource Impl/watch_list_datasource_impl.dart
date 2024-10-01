@@ -11,9 +11,24 @@ class WatchListDatasourceImpl extends WatchListDatasourceContract {
   WatchListDatasourceImpl({required this.firebaseManager});
 
   @override
-  Future<List<MovieModel>?> getWatchListMovies() async {
-    var response = await firebaseManager.getSavedMovies().first;
-    return response.docs.map((e) => e.data().toMovieModel()).toList();
+  // Future<List<MovieModel>?> getWatchListMovies() async {
+  //   var response = await firebaseManager.getSavedMovies().first;
+  //   return response.docs.map((e) => e.data().toMovieModel()).toList();
+  // }
+Stream<List<MovieModel>?> getWatchListMovies() {
+  return firebaseManager.getSavedMovies().map((querySnapshot) {
+    return querySnapshot.docs.map((doc) => doc.data().toMovieModel()).toList();
+  });
+}
+
+  @override
+  Future<void> addFavMovie(MovieModel movieModel) {
+    return firebaseManager.addFavMovie(movieModel.toSaveModel());
+  }
+
+  @override
+  Future<void> deleteFavMovie(MovieModel movieModel) {
+    return firebaseManager.deleteFavMovie(movieModel.toSaveModel());
   }
 }
 // import 'package:firebase_core/firebase_core.dart';

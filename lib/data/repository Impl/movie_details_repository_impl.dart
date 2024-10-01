@@ -10,7 +10,7 @@ class MovieDetailsRepositoryImpl extends MovieDetailsRepositoryContract {
   MovieDetailsRepositoryImpl({required this.movieDetailsDatasourceContract});
 
   @override
-  Future<List<MovieModel>?> getMovieDetails(int? movieId) {
+  Future<List<MovieModel>?> getMovieDetails(int movieId) {
     return movieDetailsDatasourceContract.getMovieDetails(movieId);
   }
 }

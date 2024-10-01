@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_application/domain/entities/movie_model.dart';
 import 'package:movies_application/config/di/di.dart';
 import 'package:movies_application/presentation/view%20model/cubit/home_cubit.dart';
+import 'package:movies_application/presentation/view%20model/cubit/movie_details_cubit.dart';
+import 'package:movies_application/presentation/view%20model/cubit/watch_list_cubit.dart';
 import 'package:movies_application/presentation/view%20model/states/home_state.dart';
 import 'package:movies_application/presentation/widgets/new_releases_widget.dart';
 import 'package:movies_application/presentation/widgets/top_rated_widget.dart';
@@ -20,7 +22,7 @@ class MovieDetailsScreen extends StatefulWidget {
 
 class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   HomeCubit viewModel = getIt<HomeCubit>();
-  // MovieDetailsCubit viewModel = getIt<MovieDetailsCubit>();
+  WatchListCubit viewWatchListModel = getIt<WatchListCubit>();
 
   @override
   void initState() {
@@ -82,7 +84,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                 )),
             Row(
               children: [
-                NewReleasesWidget(movieModel: model),
+                NewReleasesWidget(
+                    movieModel: model, watchListCubit: viewWatchListModel),
                 Expanded(
                   child: Column(
                     children: [
@@ -171,6 +174,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                       itemBuilder: (context, index) =>
                                           TopRatedWidget(
                                             movieModel: moviesList![index],
+                                            watchListCubit: viewWatchListModel,
                                           ));
                                 }
                             }

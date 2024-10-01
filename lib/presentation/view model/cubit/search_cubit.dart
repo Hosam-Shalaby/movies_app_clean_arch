@@ -9,7 +9,7 @@ class SearchCubit extends Cubit<SearchsState> {
   SearchCubit({required this.searchUseCase})
       : super(SearchLoading(message: 'Loading....'));
 
-  initPage(String movieName) async {
+  void initPage(String movieName) async {
     emit(SearchLoading(message: 'Loading...'));
     try {
       var searchList = await searchUseCase.invoke(movieName);

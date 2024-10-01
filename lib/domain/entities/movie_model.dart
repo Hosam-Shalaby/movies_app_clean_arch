@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:movies_application/data/models/firebase%20models/save_model.dart';
 
 class MovieModel {
   final bool? adult;
@@ -126,5 +127,24 @@ class MovieModel {
     if (other is! MovieModel) return false;
     final mapEquals = const DeepCollectionEquality().equals;
     return mapEquals(other.toMap(), toMap());
+  }
+
+  SaveModel toSaveModel() {
+    return SaveModel(
+      adult: adult,
+      backdropPath: backdropPath,
+      genreIds: genreIds,
+      id: id,
+      originalLanguage: originalLanguage,
+      originalTitle: originalTitle,
+      overview: overview,
+      popularity: popularity,
+      posterPath: posterPath,
+      releaseDate: releaseDate,
+      title: title,
+      video: video,
+      voteAverage: voteAverage,
+      voteCount: voteCount,
+    );
   }
 }
