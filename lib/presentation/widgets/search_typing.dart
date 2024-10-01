@@ -4,6 +4,8 @@ import 'package:movies_application/presentation/views/tabs/search_tab.dart';
 
 
 class SearchTyping extends SearchDelegate {
+  
+  
 
   @override
   List<Widget>? buildActions(BuildContext context) {

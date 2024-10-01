@@ -77,7 +77,7 @@ class MovieModel {
   /// `dart:convert`
   ///
   /// Parses the string and returns the resulting Json object as [MovieModel].
-  factory MovieModel.fromJson(String data) {
+  factory MovieModel.fromJson(var data) {
     return MovieModel.fromMap(json.decode(data) as Map<String, dynamic>);
   }
 

@@ -1,39 +1,28 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
+import 'package:movies_application/data/models/api%20models/popular_dto.dart';
 
-import 'package:movies_application/data/models/popular/popular_dto.dart';
-
-class NewRealeasesResponse {
-  Dates? dates;
+class TopRatedResponse {
   int? page;
   List<PopularDto>? results;
   int? totalPages;
   int? totalResults;
-
   String? message;
   String? code;
-
-  NewRealeasesResponse(
-      {this.dates,
-      this.page,
-      this.message,
-      this.code,
+  TopRatedResponse(
+      {this.page,
       this.results,
       this.totalPages,
-      this.totalResults});
+      this.totalResults,
+      this.code,
+      this.message});
 
-  NewRealeasesResponse.fromJson(Map<String, dynamic> json) {
-    if (json["dates"] is Map) {
-      dates = json["dates"] == null ? null : Dates.fromJson(json["dates"]);
-    }
+  TopRatedResponse.fromJson(Map<String, dynamic> json) {
     if (json["page"] is int) {
       page = json["page"];
     }
     if (json["results"] is List) {
       results = json["results"] == null
           ? null
-          : (json["results"] as List)
-              .map((e) => PopularDto.fromJson(e))
-              .toList();
+          : (json["results"] as List).map((e) => PopularDto.fromJson(e)).toList();
     }
     if (json["total_pages"] is int) {
       totalPages = json["total_pages"];
@@ -51,17 +40,14 @@ class NewRealeasesResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    if (dates != null) {
-      _data["dates"] = dates?.toJson();
-    }
-    _data["page"] = page;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["page"] = page;
     if (results != null) {
-      _data["results"] = results?.map((e) => e.toJson()).toList();
+      data["results"] = results?.map((e) => e.toJson()).toList();
     }
-    _data["total_pages"] = totalPages;
-    _data["total_results"] = totalResults;
-    return _data;
+    data["total_pages"] = totalPages;
+    data["total_results"] = totalResults;
+    return data;
   }
 }
 
@@ -144,46 +130,23 @@ class Results {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["adult"] = adult;
-    _data["backdrop_path"] = backdropPath;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["adult"] = adult;
+    data["backdrop_path"] = backdropPath;
     if (genreIds != null) {
-      _data["genre_ids"] = genreIds;
+      data["genre_ids"] = genreIds;
     }
-    _data["id"] = id;
-    _data["original_language"] = originalLanguage;
-    _data["original_title"] = originalTitle;
-    _data["overview"] = overview;
-    _data["popularity"] = popularity;
-    _data["poster_path"] = posterPath;
-    _data["release_date"] = releaseDate;
-    _data["title"] = title;
-    _data["video"] = video;
-    _data["vote_average"] = voteAverage;
-    _data["vote_count"] = voteCount;
-    return _data;
-  }
-}
-
-class Dates {
-  String? maximum;
-  String? minimum;
-
-  Dates({this.maximum, this.minimum});
-
-  Dates.fromJson(Map<String, dynamic> json) {
-    if (json["maximum"] is String) {
-      maximum = json["maximum"];
-    }
-    if (json["minimum"] is String) {
-      minimum = json["minimum"];
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["maximum"] = maximum;
-    _data["minimum"] = minimum;
-    return _data;
+    data["id"] = id;
+    data["original_language"] = originalLanguage;
+    data["original_title"] = originalTitle;
+    data["overview"] = overview;
+    data["popularity"] = popularity;
+    data["poster_path"] = posterPath;
+    data["release_date"] = releaseDate;
+    data["title"] = title;
+    data["video"] = video;
+    data["vote_average"] = voteAverage;
+    data["vote_count"] = voteCount;
+    return data;
   }
 }

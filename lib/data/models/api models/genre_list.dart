@@ -1,4 +1,4 @@
-import 'package:movies_application/data/models/popular/genre_dto.dart';
+import 'package:movies_application/data/models/api%20models/genre_dto.dart';
 
 class GenresList {
   final List<GenreDto> genres;

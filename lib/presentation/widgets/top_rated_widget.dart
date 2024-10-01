@@ -19,13 +19,16 @@ class _TopRatedWidgetState extends State<TopRatedWidget> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onDoubleTap: () {
-          setState(() {});
-          selected = true;
-        },
+        // onDoubleTap: () {
+        //   setState(() {});
+        //   selected = true;
+        // },
         onTap: () {
           setState(() {});
-          selected = false;
+          selected == false ? true : false;
+
+          print(selected);
+          
         },
         child: Stack(
           children: [

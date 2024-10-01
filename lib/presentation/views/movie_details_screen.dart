@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_application/domain/entities/movie_model.dart';
-import 'package:movies_application/presentation/di/di.dart';
+import 'package:movies_application/config/di/di.dart';
 import 'package:movies_application/presentation/view%20model/cubit/home_cubit.dart';
 import 'package:movies_application/presentation/view%20model/states/home_state.dart';
 import 'package:movies_application/presentation/widgets/new_releases_widget.dart';

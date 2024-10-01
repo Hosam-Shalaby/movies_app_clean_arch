@@ -19,13 +19,13 @@ class _NewReleasesWidgetState extends State<NewReleasesWidget> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
-        onDoubleTap: () {
-          setState(() {});
-          selected = true;
-        },
+        // onDoubleTap: () {
+        //   setState(() {});
+        //   selected = true;
+        // },
         onTap: () {
           setState(() {});
-          selected = false;
+          selected == false ? true : false;
         },
         child: Stack(
           children: [

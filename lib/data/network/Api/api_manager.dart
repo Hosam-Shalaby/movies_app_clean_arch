@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
-import 'package:movies_application/data/models/popular/genre_list.dart';
-import 'package:movies_application/data/models/popular/popular_response.dart';
+import 'package:movies_application/data/models/api%20models/genre_list.dart';
+import 'package:movies_application/data/models/api%20models/popular_response.dart';
 import 'package:movies_application/utls/constant/api_constant.dart';
 
 @singleton

@@ -1,4 +1,4 @@
-import 'package:movies_application/data/models/popular/popular_dto.dart';
+import 'package:movies_application/data/models/api%20models/popular_dto.dart';
 
 class PopularResponse {
   int? page;
